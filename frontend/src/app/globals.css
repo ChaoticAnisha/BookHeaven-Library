@@ -1,0 +1,44 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #3B4FE8;
+  --color-accent: #7C3AED;
+  --color-bg-outer: #1A1A2E;
+  --color-bg-inner: #F8FAFC;
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B;
+  --color-border: #E2E8F0;
+  
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: #F8FAFC;
+    --foreground: #1E293B;
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .bg-gradient-login {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6, #60A5FA);
+  }
+  
+  .bg-gradient-card {
+    background: linear-gradient(135deg, #4F46E5, #7C3AED);
+  }
+  
+  .bg-gradient-quote {
+    background: linear-gradient(135deg, #C026D3, #7C3AED);
+  }
+  
+  .shadow-card {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+}
