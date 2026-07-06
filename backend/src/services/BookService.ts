@@ -24,6 +24,11 @@ export class BookService {
     return bookRepo.findRecommended(categories, limit);
   }
 
+  async getSimilar(id: string, limit = 6): Promise<IBook[]> {
+    const book = await this.getById(id);
+    return bookRepo.findSimilar(id, book.category, limit);
+  }
+
   async createBook(data: Partial<IBook>): Promise<IBook> {
     const existing = await bookRepo.findByIsbn(data.isbn13 as string);
     if (existing) throw createError('A book with this ISBN already exists', 409);
