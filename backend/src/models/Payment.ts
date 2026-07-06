@@ -1,7 +1,7 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export type PaymentStatus = 'pending' | 'completed' | 'failed' | 'refunded';
-export type PaymentMethod = 'card' | 'khalti' | 'credit';
+export type PaymentMethod = 'card' | 'khalti' | 'esewa' | 'credit';
 
 export interface IPayment extends Document {
   _id: mongoose.Types.ObjectId;
@@ -14,6 +14,7 @@ export interface IPayment extends Document {
   transactionId?: string;
   khaltiPidx?: string;
   khaltiToken?: string;
+  esewaRefId?: string;
   purchaseOrderId: string;
   purchaseOrderName: string;
   description?: string;
@@ -27,11 +28,12 @@ const PaymentSchema = new Schema<IPayment>(
     rental: { type: Schema.Types.ObjectId, ref: 'Rental', required: true },
     amount: { type: Number, required: true, min: 0 },
     amountInPaisa: { type: Number, required: true, min: 0 },
-    method: { type: String, enum: ['card', 'khalti', 'credit'], required: true },
+    method: { type: String, enum: ['card', 'khalti', 'esewa', 'credit'], required: true },
     status: { type: String, enum: ['pending', 'completed', 'failed', 'refunded'], default: 'pending' },
     transactionId: { type: String },
     khaltiPidx: { type: String },
     khaltiToken: { type: String },
+    esewaRefId: { type: String },
     purchaseOrderId: { type: String, required: true },
     purchaseOrderName: { type: String, required: true },
     description: { type: String },
