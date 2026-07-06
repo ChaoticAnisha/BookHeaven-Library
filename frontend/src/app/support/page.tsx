@@ -50,8 +50,8 @@ export default function SupportPage() {
 
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-[#1E293B]">Help & Support</h1>
-          <p className="text-[#64748B] mt-1.5">We're here to help. Find answers or reach out to our team.</p>
+          <h1 className="text-3xl font-bold text-[#1E293B] dark:text-slate-100">Help & Support</h1>
+          <p className="text-[#64748B] dark:text-slate-400 mt-1.5">We're here to help. Find answers or reach out to our team.</p>
         </div>
 
         {/* Contact Cards */}
@@ -61,37 +61,37 @@ export default function SupportPage() {
             { icon: Mail, label: "Email Us", value: "support@bookheaven.com", color: "from-[#059669] to-[#0891B2]", note: "Reply within 24h" },
             { icon: Phone, label: "Call Us", value: "+977 01-1234567", color: "from-[#F59E0B] to-[#EF4444]", note: "Business hours" },
           ].map((item) => (
-            <div key={item.label} className="bg-white border border-[#E2E8F0] rounded-xl p-5 hover:shadow-sm transition-all">
+            <div key={item.label} className="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-xl p-5 hover:shadow-sm transition-all">
               <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${item.color} flex items-center justify-center mb-3 shadow-sm`}>
                 <item.icon className="w-5 h-5 text-white" />
               </div>
-              <p className="font-semibold text-[#1E293B] text-sm">{item.label}</p>
-              <p className="text-xs text-[#3B4FE8] font-medium mt-0.5">{item.value}</p>
-              <p className="text-xs text-[#94A3B8] mt-0.5">{item.note}</p>
+              <p className="font-semibold text-[#1E293B] dark:text-slate-100 text-sm">{item.label}</p>
+              <p className="text-xs text-[#3B4FE8] dark:text-indigo-400 font-medium mt-0.5">{item.value}</p>
+              <p className="text-xs text-[#94A3B8] dark:text-slate-500 mt-0.5">{item.note}</p>
             </div>
           ))}
         </div>
 
         {/* FAQ */}
         <div>
-          <h2 className="text-xl font-bold text-[#1E293B] mb-5">Frequently Asked Questions</h2>
+          <h2 className="text-xl font-bold text-[#1E293B] dark:text-slate-100 mb-5">Frequently Asked Questions</h2>
           <div className="space-y-2">
             {faqs.map((faq, index) => (
               <div
                 key={index}
-                className="bg-white border border-[#E2E8F0] rounded-xl overflow-hidden"
+                className="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-xl overflow-hidden"
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#F8FAFC] transition-colors"
+                  className="w-full flex items-center justify-between px-5 py-4 text-left hover:bg-[#F8FAFC] dark:hover:bg-slate-900 transition-colors"
                 >
-                  <span className="font-medium text-sm text-[#1E293B]">{faq.q}</span>
+                  <span className="font-medium text-sm text-[#1E293B] dark:text-slate-100">{faq.q}</span>
                   {openIndex === index
-                    ? <ChevronUp className="w-4 h-4 text-[#3B4FE8] shrink-0" />
-                    : <ChevronDown className="w-4 h-4 text-[#94A3B8] shrink-0" />}
+                    ? <ChevronUp className="w-4 h-4 text-[#3B4FE8] dark:text-indigo-400 shrink-0" />
+                    : <ChevronDown className="w-4 h-4 text-[#94A3B8] dark:text-slate-500 shrink-0" />}
                 </button>
                 {openIndex === index && (
-                  <div className="px-5 pb-4 text-sm text-[#64748B] leading-relaxed border-t border-[#F1F5F9] pt-3">
+                  <div className="px-5 pb-4 text-sm text-[#64748B] dark:text-slate-400 leading-relaxed border-t border-[#F1F5F9] dark:border-slate-800 pt-3">
                     {faq.a}
                   </div>
                 )}
@@ -102,7 +102,7 @@ export default function SupportPage() {
 
         {/* Contact Form */}
         <div>
-          <h2 className="text-xl font-bold text-[#1E293B] mb-5">Send us a Message</h2>
+          <h2 className="text-xl font-bold text-[#1E293B] dark:text-slate-100 mb-5">Send us a Message</h2>
           {submitted ? (
             <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-8 flex flex-col items-center text-center gap-3">
               <CheckCircle className="w-12 h-12 text-emerald-500" />
@@ -110,51 +110,51 @@ export default function SupportPage() {
               <p className="text-emerald-700 text-sm">We'll get back to you within 24 hours.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="bg-white border border-[#E2E8F0] rounded-xl p-6 space-y-4">
+            <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-xl p-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-[#1E293B] mb-1.5">Your Name</label>
+                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-slate-100 mb-1.5">Your Name</label>
                   <input
                     type="text"
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="John Doe"
-                    className="w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-sm text-[#1E293B] outline-none focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent transition-all placeholder:text-[#94A3B8]"
+                    className="w-full border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2.5 text-sm text-[#1E293B] dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-[#94A3B8] dark:placeholder:text-slate-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-[#1E293B] mb-1.5">Email Address</label>
+                  <label className="block text-xs font-semibold text-[#1E293B] dark:text-slate-100 mb-1.5">Email Address</label>
                   <input
                     type="email"
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-sm text-[#1E293B] outline-none focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent transition-all placeholder:text-[#94A3B8]"
+                    className="w-full border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2.5 text-sm text-[#1E293B] dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-[#94A3B8] dark:placeholder:text-slate-500"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#1E293B] mb-1.5">Subject</label>
+                <label className="block text-xs font-semibold text-[#1E293B] dark:text-slate-100 mb-1.5">Subject</label>
                 <input
                   type="text"
                   required
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
                   placeholder="e.g. Issue with rental return"
-                  className="w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-sm text-[#1E293B] outline-none focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent transition-all placeholder:text-[#94A3B8]"
+                  className="w-full border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2.5 text-sm text-[#1E293B] dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-[#94A3B8] dark:placeholder:text-slate-500"
                 />
               </div>
               <div>
-                <label className="block text-xs font-semibold text-[#1E293B] mb-1.5">Message</label>
+                <label className="block text-xs font-semibold text-[#1E293B] dark:text-slate-100 mb-1.5">Message</label>
                 <textarea
                   required
                   rows={5}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   placeholder="Describe your issue or question in detail..."
-                  className="w-full border border-[#E2E8F0] rounded-lg px-3 py-2.5 text-sm text-[#1E293B] outline-none focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent transition-all placeholder:text-[#94A3B8] resize-none"
+                  className="w-full border border-[#E2E8F0] dark:border-slate-700 rounded-lg px-3 py-2.5 text-sm text-[#1E293B] dark:text-slate-100 outline-none focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent transition-all placeholder:text-[#94A3B8] dark:placeholder:text-slate-500 resize-none"
                 />
               </div>
               <div className="flex justify-end">
