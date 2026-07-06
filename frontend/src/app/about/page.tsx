@@ -89,8 +89,8 @@ export default function AboutPage() {
 
         {/* Mission */}
         <div>
-          <h2 className="text-2xl font-bold text-[#1E293B] mb-4">Our Mission</h2>
-          <p className="text-[#64748B] text-base leading-relaxed border-l-4 border-[#4F46E5] pl-5 italic">
+          <h2 className="text-2xl font-bold text-[#1E293B] dark:text-slate-100 mb-4">Our Mission</h2>
+          <p className="text-[#64748B] dark:text-slate-400 text-base leading-relaxed border-l-4 border-[#4F46E5] pl-5 italic">
             "To democratize access to knowledge by building a world-class library experience that is
             intuitive, beautiful, and accessible — making reading not just easy, but delightful."
           </p>
@@ -98,18 +98,18 @@ export default function AboutPage() {
 
         {/* Features Grid */}
         <div>
-          <h2 className="text-2xl font-bold text-[#1E293B] mb-6">What We Offer</h2>
+          <h2 className="text-2xl font-bold text-[#1E293B] dark:text-slate-100 mb-6">What We Offer</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map((f) => (
               <div
                 key={f.title}
-                className="bg-white rounded-xl border border-[#E2E8F0] p-5 hover:shadow-md hover:border-[#C7D2FE] transition-all group"
+                className="bg-white dark:bg-slate-800 rounded-xl border border-[#E2E8F0] dark:border-slate-700 p-5 hover:shadow-md hover:border-[#C7D2FE] dark:hover:border-indigo-800 transition-all group"
               >
                 <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${f.color} flex items-center justify-center mb-4 shadow-sm`}>
                   <f.icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="font-bold text-[#1E293B] mb-1.5">{f.title}</h3>
-                <p className="text-sm text-[#64748B] leading-relaxed">{f.description}</p>
+                <h3 className="font-bold text-[#1E293B] dark:text-slate-100 mb-1.5">{f.title}</h3>
+                <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">{f.description}</p>
               </div>
             ))}
           </div>
@@ -117,19 +117,19 @@ export default function AboutPage() {
 
         {/* Team */}
         <div>
-          <h2 className="text-2xl font-bold text-[#1E293B] mb-6">The Team</h2>
+          <h2 className="text-2xl font-bold text-[#1E293B] dark:text-slate-100 mb-6">The Team</h2>
           <div className="flex flex-wrap gap-5">
             {team.map((member) => (
               <div
                 key={member.name}
-                className="flex items-center gap-4 bg-white rounded-xl border border-[#E2E8F0] px-5 py-4 hover:shadow-sm transition-all"
+                className="flex items-center gap-4 bg-white dark:bg-slate-800 rounded-xl border border-[#E2E8F0] dark:border-slate-700 px-5 py-4 hover:shadow-sm transition-all"
               >
                 <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${member.color} flex items-center justify-center text-white font-bold text-sm shadow-sm`}>
                   {member.initials}
                 </div>
                 <div>
-                  <p className="font-semibold text-[#1E293B] text-sm">{member.name}</p>
-                  <p className="text-xs text-[#64748B]">{member.role}</p>
+                  <p className="font-semibold text-[#1E293B] dark:text-slate-100 text-sm">{member.name}</p>
+                  <p className="text-xs text-[#64748B] dark:text-slate-400">{member.role}</p>
                 </div>
               </div>
             ))}
@@ -137,10 +137,10 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div className="bg-[#EEF2FF] border border-[#C7D2FE] rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="bg-[#EEF2FF] dark:bg-indigo-950 border border-[#C7D2FE] dark:border-indigo-800 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div>
-            <h3 className="text-xl font-bold text-[#1E293B] mb-1">Ready to start reading?</h3>
-            <p className="text-[#64748B] text-sm">Browse our collection and find your next favourite book today.</p>
+            <h3 className="text-xl font-bold text-[#1E293B] dark:text-slate-100 mb-1">Ready to start reading?</h3>
+            <p className="text-[#64748B] dark:text-slate-400 text-sm">Browse our collection and find your next favourite book today.</p>
           </div>
           <Link
             href="/browse"
