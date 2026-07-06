@@ -3,6 +3,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import axios from "axios";
 import { useRouter, usePathname } from "next/navigation";
+import api from "@/lib/api";
 
 interface User {
   _id: string;
@@ -11,6 +12,9 @@ interface User {
   role: string;
   membership: string;
   avatar?: string;
+  address?: string;
+  phone?: string;
+  bio?: string;
 }
 
 interface AuthContextType {
@@ -18,6 +22,7 @@ interface AuthContextType {
   token: string | null;
   login: (token: string, user: User, skipRedirect?: boolean) => void;
   logout: () => void;
+  updateProfile: (fields: Partial<User>) => Promise<void>;
   isLoading: boolean;
 }
 
@@ -65,8 +70,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     router.push("/login");
   };
 
+  const updateProfile = async (fields: Partial<User>): Promise<void> => {
+    if (!user) return;
+    const { data } = await api.put('/users/profile', fields);
+    const updatedUser: User = { ...user, ...data.data };
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, token, login, logout, isLoading }}>
+    <AuthContext.Provider value={{ user, token, login, logout, updateProfile, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
