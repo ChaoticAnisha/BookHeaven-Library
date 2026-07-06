@@ -14,6 +14,11 @@ export const config = {
     publicKey: process.env.KHALTI_PUBLIC_KEY || '',
     baseUrl: 'https://a.khalti.com/api/v2',
   },
+  esewa: {
+    secretKey: process.env.ESEWA_SECRET_KEY || '8gBm/:&EnhH.1/q',
+    productCode: process.env.ESEWA_PRODUCT_CODE || 'EPAYTEST',
+    baseUrl: process.env.ESEWA_BASE_URL || 'https://rc-epay.esewa.com.np',
+  },
   rateLimits: {
     auth: { windowMs: 15 * 60 * 1000, max: 5 },
     general: { windowMs: 15 * 60 * 1000, max: 100 },
