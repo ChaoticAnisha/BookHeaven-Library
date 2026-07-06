@@ -10,6 +10,9 @@ router.put('/profile', authenticate, (req, res, next) => ctrl.updateProfile(req,
 router.put('/notifications', authenticate, (req, res, next) => ctrl.updateNotifications(req, res, next));
 router.get('/reading-history', authenticate, (req, res, next) => ctrl.getReadingHistory(req, res, next));
 router.get('/dashboard-stats', authenticate, (req, res, next) => ctrl.getDashboardStats(req, res, next));
+router.get('/wishlist', authenticate, (req, res, next) => ctrl.getWishlist(req, res, next));
+router.post('/wishlist/:bookId', authenticate, (req, res, next) => ctrl.addToWishlist(req, res, next));
+router.delete('/wishlist/:bookId', authenticate, (req, res, next) => ctrl.removeFromWishlist(req, res, next));
 
 // Admin only
 router.get('/all', authenticate, authorize('admin'), (req, res, next) => ctrl.getAllUsers(req, res, next));
