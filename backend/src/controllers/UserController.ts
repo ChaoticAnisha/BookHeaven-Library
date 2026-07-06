@@ -45,6 +45,30 @@ export class UserController {
     } catch (error) { next(error); }
   }
 
+  async getWishlist(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
+      const wishlist = await userService.getWishlist(req.user._id.toString());
+      res.json({ success: true, data: wishlist });
+    } catch (error) { next(error); }
+  }
+
+  async addToWishlist(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
+      const user = await userService.addToWishlist(req.user._id.toString(), req.params.bookId);
+      res.json({ success: true, message: 'Added to wishlist', data: user.wishlist });
+    } catch (error) { next(error); }
+  }
+
+  async removeFromWishlist(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
+      const user = await userService.removeFromWishlist(req.user._id.toString(), req.params.bookId);
+      res.json({ success: true, message: 'Removed from wishlist', data: user.wishlist });
+    } catch (error) { next(error); }
+  }
+
   async getAllUsers(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { page = '1', limit = '20' } = req.query as Record<string, string>;
