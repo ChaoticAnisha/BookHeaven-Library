@@ -69,7 +69,7 @@ export default function Login() {
             <p className="text-sm text-slate-500 mt-2">
               Welcome back, <span className="font-semibold text-slate-700">{successUser.name}</span>!
             </p>
-            <div className="mt-4 inline-block px-3 py-1 bg-indigo-50 text-[#3B4FE8] text-xs font-semibold rounded-full uppercase tracking-wider">
+            <div className="mt-4 inline-block px-3 py-1 bg-indigo-50 text-[#3B4FE8] dark:text-indigo-400 text-xs font-semibold rounded-full uppercase tracking-wider">
               {successUser.role} Account
             </div>
             <p className="text-xs text-slate-400 mt-4">
@@ -92,32 +92,32 @@ export default function Login() {
         </svg>
       </div>
 
-      <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md z-10">
+      <div className="bg-white dark:bg-slate-800 p-10 rounded-2xl shadow-xl w-full max-w-md z-10">
         <div className="flex justify-center mb-8">
           <img src="/images/logo.png" alt="BookHeaven Logo" className="h-16 object-contain" />
         </div>
 
-        <h2 className="text-2xl font-bold text-center mb-6 text-[#1E293B]">Welcome Back</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-[#1E293B] dark:text-slate-100">Welcome Back</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-[#64748B] mb-1">Email</label>
+            <label className="block text-sm font-medium text-[#64748B] dark:text-slate-400 mb-1">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-[#E2E8F0] rounded-lg focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent outline-none transition-all text-[#1E293B]"
+              className="w-full px-4 py-2 border border-[#E2E8F0] dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent outline-none transition-all text-[#1E293B] dark:text-slate-100"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-[#64748B] mb-1">Password</label>
+            <label className="block text-sm font-medium text-[#64748B] dark:text-slate-400 mb-1">Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-[#E2E8F0] rounded-lg focus:ring-2 focus:ring-[#3B4FE8] focus:border-transparent outline-none transition-all text-[#1E293B]"
+              className="w-full px-4 py-2 border border-[#E2E8F0] dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-[#3B4FE8] dark:focus:ring-indigo-400 focus:border-transparent outline-none transition-all text-[#1E293B] dark:text-slate-100"
               required
             />
           </div>
@@ -133,9 +133,9 @@ export default function Login() {
           </button>
         </form>
 
-        <p className="mt-6 text-center text-sm text-[#64748B]">
+        <p className="mt-6 text-center text-sm text-[#64748B] dark:text-slate-400">
           Don't have an account?{" "}
-          <Link href="/register" className="text-[#3B4FE8] font-semibold hover:underline">
+          <Link href="/register" className="text-[#3B4FE8] dark:text-indigo-400 font-semibold hover:underline">
             Register Here
           </Link>
         </p>
