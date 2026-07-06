@@ -47,4 +47,20 @@ export class UserRepository {
   async countAll(): Promise<number> {
     return User.countDocuments();
   }
+
+  async addToWishlist(id: string, bookId: string): Promise<IUser | null> {
+    return User.findByIdAndUpdate(id, { $addToSet: { wishlist: bookId } }, { new: true })
+      .select('-password')
+      .populate('wishlist');
+  }
+
+  async removeFromWishlist(id: string, bookId: string): Promise<IUser | null> {
+    return User.findByIdAndUpdate(id, { $pull: { wishlist: bookId } }, { new: true })
+      .select('-password')
+      .populate('wishlist');
+  }
+
+  async getWishlist(id: string): Promise<IUser | null> {
+    return User.findById(id).select('wishlist').populate('wishlist');
+  }
 }
