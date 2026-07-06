@@ -12,6 +12,8 @@ const bookRepo = new BookRepository();
 const notifRepo = new NotificationRepository();
 const userRepo = new UserRepository();
 
+const CANCEL_GRACE_PERIOD_MINUTES = 30;
+
 export class RentalService {
   async rentBook(
     userId: string,
@@ -36,6 +38,11 @@ export class RentalService {
     const activeCount = await rentalRepo.countActiveByUser(userId);
     if (activeCount >= tier.maxBooks) {
       throw createError(`Your ${user.membership} plan allows maximum ${tier.maxBooks} books at a time (exceeds active rental limit)`, 400);
+    }
+
+    const requestedDays = Math.ceil((to.getTime() - from.getTime()) / (1000 * 60 * 60 * 24));
+    if (requestedDays > tier.maxDays) {
+      throw createError(`Your ${user.membership} plan allows a maximum loan duration of ${tier.maxDays} days (requested ${requestedDays} days)`, 400);
     }
 
     const bookSerial = await bookRepo.findBySerial(serialNumber);
@@ -99,6 +106,31 @@ export class RentalService {
     }
 
     return { rental: updated, penalty };
+  }
+
+  async cancelRental(rentalId: string, userId: string): Promise<IRental> {
+    const rental = await rentalRepo.findById(rentalId);
+    if (!rental) throw createError('Rental not found', 404);
+    if (rental.user._id.toString() !== userId) throw createError('Unauthorized', 403);
+    if (rental.status !== 'active') throw createError('Only active rentals can be cancelled', 400);
+
+    const ageMinutes = (Date.now() - new Date(rental.createdAt).getTime()) / (1000 * 60);
+    if (ageMinutes > CANCEL_GRACE_PERIOD_MINUTES) {
+      throw createError(`Cancellation window has passed. Rentals can only be cancelled within ${CANCEL_GRACE_PERIOD_MINUTES} minutes of booking.`, 400);
+    }
+
+    const updated = await rentalRepo.update(rentalId, { status: 'cancelled' });
+    if (!updated) throw createError('Failed to cancel rental', 500);
+
+    // Restore book stock since it was decremented on rental creation
+    const bookId = (rental.book as { _id: { toString: () => string } })._id.toString();
+    await bookRepo.incrementHardCopy(bookId);
+    const book = await bookRepo.findById(bookId);
+    if (book && book.hardCopyCount > 0 && book.status === 'borrowed') {
+      await bookRepo.update(bookId, { status: 'in-shelf' });
+    }
+
+    return updated;
   }
 
   async getUserRentals(userId: string): Promise<IRental[]> {
