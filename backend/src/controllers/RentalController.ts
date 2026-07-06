@@ -23,6 +23,15 @@ export class RentalController {
     } catch (error) { next(error); }
   }
 
+  async cancelRental(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
+      const { rentalId } = req.body;
+      const rental = await rentalService.cancelRental(rentalId, req.user._id.toString());
+      res.json({ success: true, message: 'Rental cancelled', data: rental });
+    } catch (error) { next(error); }
+  }
+
   async getUserRentals(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
