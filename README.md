@@ -18,16 +18,5 @@ A smart, digital-first bookstore and library management system. Built autonomous
 9. **Help users recognize, diagnose, and recover from errors**: Clear empty states ("No books found", "Try different keyword").
 10. **Help and documentation**: Tooltips (mocked), About/Support links, clear modal instructions.
 
-## Quick Start
-1. Setup Mongo database.
-2. cd `backend` -> `npm i` -> copy `.env.example` to `.env` -> `npm run seed` -> `npm run dev`
-3. cd `frontend` -> `npm i` -> `npm run dev`
 
-## Default Credentials
-- **Admin**: admin@bookhaven.com / Admin@123
-- **Librarian**: librarian@bookhaven.com / Lib@123
-- **Member**: member@bookhaven.com / Member@123 (Anisha Sah)
 
-## Testing
-- Backend: `cd backend && npm run test`
-- Frontend: `cd frontend && npm run test` (if configured)
