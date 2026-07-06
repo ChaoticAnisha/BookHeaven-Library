@@ -91,6 +91,12 @@ export class BookRepository {
       .limit(limit);
   }
 
+  async findSimilar(bookId: string, category: string, limit = 6): Promise<IBook[]> {
+    return Book.find({ isVisible: true, category, _id: { $ne: bookId } })
+      .sort({ rating: -1 })
+      .limit(limit);
+  }
+
   async findAll(page = 1, limit = 20): Promise<{ books: IBook[]; total: number }> {
     const skip = (page - 1) * limit;
     const [books, total] = await Promise.all([
