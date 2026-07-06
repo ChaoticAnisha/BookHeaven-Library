@@ -26,6 +26,8 @@ export interface IBook extends Document {
   hardCopyCount: number;
   eBookAvailable: boolean;
   audioBookAvailable: boolean;
+  eBookUrl?: string;
+  audioUrl?: string;
   locationCode?: string;
   status: BookStatus;
   description?: string;
@@ -59,6 +61,8 @@ const BookSchema = new Schema<IBook>(
     hardCopyCount: { type: Number, default: 0 },
     eBookAvailable: { type: Boolean, default: false },
     audioBookAvailable: { type: Boolean, default: false },
+    eBookUrl: { type: String },
+    audioUrl: { type: String },
     locationCode: { type: String },
     status: { type: String, enum: ['in-shelf', 'borrowed', 'reserved', 'maintenance'], default: 'in-shelf' },
     description: { type: String },
