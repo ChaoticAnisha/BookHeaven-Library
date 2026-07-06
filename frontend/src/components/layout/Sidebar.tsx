@@ -15,7 +15,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-[160px] bg-white h-[calc(100vh-64px)] flex flex-col justify-between sticky top-16 border-r border-[#E2E8F0]">
+    <aside className="w-[160px] bg-white dark:bg-slate-800 h-[calc(100vh-64px)] flex flex-col justify-between sticky top-16 border-r border-[#E2E8F0] dark:border-slate-700">
       <div className="py-6">
         <ul className="space-y-2">
           {menuItems.map((item) => {
@@ -28,7 +28,7 @@ export default function Sidebar() {
                 <Link 
                   href={item.href}
                   className={`flex flex-col items-center justify-center py-4 px-2 space-y-1 transition-colors ${
-                    isActive ? "text-[#3B4FE8]" : "text-[#64748B] hover:text-[#1E293B] hover:bg-[#F8FAFC]"
+                    isActive ? "text-[#3B4FE8] dark:text-indigo-400" : "text-[#64748B] dark:text-slate-400 hover:text-[#1E293B] dark:hover:text-slate-100 hover:bg-[#F8FAFC] dark:hover:bg-slate-900"
                   }`}
                 >
                   <item.icon className="w-5 h-5" />
@@ -40,20 +40,20 @@ export default function Sidebar() {
         </ul>
       </div>
 
-      <div className="py-6 border-t border-[#E2E8F0]">
-        <ul className="space-y-4 px-6 text-xs font-medium text-[#64748B]">
+      <div className="py-6 border-t border-[#E2E8F0] dark:border-slate-700">
+        <ul className="space-y-4 px-6 text-xs font-medium text-[#64748B] dark:text-slate-400">
           <li>
-            <Link href="/about" className="flex items-center space-x-2 hover:text-[#1E293B]">
+            <Link href="/about" className="flex items-center space-x-2 hover:text-[#1E293B] dark:hover:text-slate-100">
               <Info className="w-4 h-4" /> <span>About</span>
             </Link>
           </li>
           <li>
-            <Link href="/support" className="flex items-center space-x-2 hover:text-[#1E293B]">
+            <Link href="/support" className="flex items-center space-x-2 hover:text-[#1E293B] dark:hover:text-slate-100">
               <HelpCircle className="w-4 h-4" /> <span>Support</span>
             </Link>
           </li>
           <li>
-            <Link href="/terms" className="flex items-center space-x-2 hover:text-[#1E293B]">
+            <Link href="/terms" className="flex items-center space-x-2 hover:text-[#1E293B] dark:hover:text-slate-100">
               <FileText className="w-4 h-4" /> <span>Terms & Condition</span>
             </Link>
           </li>
