@@ -13,6 +13,7 @@ router.get('/new-arrivals', (req, res, next) => ctrl.getNewArrivals(req, res, ne
 router.get('/recommended', (req, res, next) => ctrl.getRecommended(req, res, next));
 router.get('/stats', authenticate, authorize('admin'), (req, res, next) => ctrl.getStats(req, res, next));
 router.get('/all', authenticate, (req, res, next) => ctrl.getAllBooks(req, res, next));
+router.get('/similar/:id', (req, res, next) => ctrl.getSimilar(req, res, next));
 router.get('/:id', (req, res, next) => ctrl.getById(req, res, next));
 
 router.post('/', authenticate, authorize('admin'), (req, res, next) => ctrl.createBook(req, res, next));
