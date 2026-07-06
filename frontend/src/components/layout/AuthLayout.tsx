@@ -18,8 +18,8 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
 
   if (isLoading || !user) {
     return (
-      <div className="min-h-screen w-full bg-[#F8FAFC] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B4FE8]"></div>
+      <div className="min-h-screen w-full bg-[#F8FAFC] dark:bg-slate-900 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#3B4FE8] dark:border-indigo-400"></div>
       </div>
     );
   }
@@ -28,7 +28,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
   // but if they hit standard routes, we can still show this.
   
   return (
-    <div className="min-h-screen w-full bg-[#F8FAFC] flex flex-col">
+    <div className="min-h-screen w-full bg-[#F8FAFC] dark:bg-slate-900 flex flex-col">
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />
