@@ -50,8 +50,8 @@ export default function NewArrivalsPage() {
             <Sparkles className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-[#1E293B]">New Arrivals</h1>
-            <p className="text-[#64748B] mt-0.5">Recently added to our collection</p>
+            <h1 className="text-3xl font-bold text-[#1E293B] dark:text-slate-100">New Arrivals</h1>
+            <p className="text-[#64748B] dark:text-slate-400 mt-0.5">Recently added to our collection</p>
           </div>
         </div>
 
@@ -69,8 +69,8 @@ export default function NewArrivalsPage() {
         ) : books.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <Clock className="w-16 h-16 text-[#E2E8F0] mb-4" />
-            <h3 className="text-lg font-semibold text-[#1E293B] mb-2">No new arrivals yet</h3>
-            <p className="text-[#64748B] text-sm">Check back soon for the latest additions.</p>
+            <h3 className="text-lg font-semibold text-[#1E293B] dark:text-slate-100 mb-2">No new arrivals yet</h3>
+            <p className="text-[#64748B] dark:text-slate-400 text-sm">Check back soon for the latest additions.</p>
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-5">
@@ -81,7 +81,7 @@ export default function NewArrivalsPage() {
                     New
                   </span>
                 )}
-                <div className="bg-gradient-to-br from-[#EEF2FF] to-[#E0E7FF] aspect-[3/4] w-full rounded-xl overflow-hidden shadow-sm border border-[#E2E8F0] group-hover:shadow-md group-hover:border-[#3B4FE8]/30 transition-all">
+                <div className="bg-gradient-to-br from-[#EEF2FF] to-[#E0E7FF] aspect-[3/4] w-full rounded-xl overflow-hidden shadow-sm border border-[#E2E8F0] dark:border-slate-700 group-hover:shadow-md group-hover:border-[#3B4FE8]/30 transition-all">
                   {book.coverUrl ? (
                     <img
                       src={book.coverUrl}
@@ -95,16 +95,16 @@ export default function NewArrivalsPage() {
                   )}
                 </div>
                 <div className="mt-2 space-y-0.5">
-                  <h3 className="font-semibold text-sm text-[#1E293B] line-clamp-1 group-hover:text-[#3B4FE8] transition-colors">
+                  <h3 className="font-semibold text-sm text-[#1E293B] dark:text-slate-100 line-clamp-1 group-hover:text-[#3B4FE8] dark:group-hover:text-indigo-400 transition-colors">
                     {book.title}
                   </h3>
-                  <p className="text-xs text-[#64748B] line-clamp-1">{book.author}</p>
+                  <p className="text-xs text-[#64748B] dark:text-slate-400 line-clamp-1">{book.author}</p>
                   <div className="flex items-center justify-between pt-0.5">
                     <div className="flex items-center gap-0.5">
                       <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                      <span className="text-[11px] font-bold text-[#1E293B]">{book.rating?.toFixed(1)}</span>
+                      <span className="text-[11px] font-bold text-[#1E293B] dark:text-slate-100">{book.rating?.toFixed(1)}</span>
                     </div>
-                    <span className="text-[10px] text-[#3B4FE8] font-semibold">Rs.{book.rentPrice}/day</span>
+                    <span className="text-[10px] text-[#3B4FE8] dark:text-indigo-400 font-semibold">Rs.{book.rentPrice}/day</span>
                   </div>
                 </div>
               </Link>
