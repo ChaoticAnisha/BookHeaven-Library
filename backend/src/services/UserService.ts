@@ -33,17 +33,19 @@ export class UserService {
   }
 
   async getDashboardStats(userId: string): Promise<any> {
-    const [rentals, active] = await Promise.all([
+    const [rentals, active, user] = await Promise.all([
       rentalRepo.findByUser(userId),
       rentalRepo.countActiveByUser(userId),
+      userRepo.findById(userId),
     ]);
     const readingsVal = rentals.filter((r) => r.status === 'returned').length;
+    const wishlistVal = user?.wishlist?.length || 0;
     return {
       readings: readingsVal,
-      wishlist: 0,
+      wishlist: wishlistVal,
       active,
       readingsCount: readingsVal,
-      wishlistCount: 0,
+      wishlistCount: wishlistVal,
       activeCount: active,
     };
   }
@@ -61,6 +63,24 @@ export class UserService {
   async deleteUser(userId: string): Promise<void> {
     const user = await userRepo.delete(userId);
     if (!user) throw createError('User not found', 404);
+  }
+
+  async addToWishlist(userId: string, bookId: string): Promise<IUser> {
+    const user = await userRepo.addToWishlist(userId, bookId);
+    if (!user) throw createError('User not found', 404);
+    return user;
+  }
+
+  async removeFromWishlist(userId: string, bookId: string): Promise<IUser> {
+    const user = await userRepo.removeFromWishlist(userId, bookId);
+    if (!user) throw createError('User not found', 404);
+    return user;
+  }
+
+  async getWishlist(userId: string): Promise<IUser['wishlist']> {
+    const user = await userRepo.getWishlist(userId);
+    if (!user) throw createError('User not found', 404);
+    return user.wishlist;
   }
 
   async getUserStats(): Promise<{ total: number; admins: number; librarians: number; members: number }> {
