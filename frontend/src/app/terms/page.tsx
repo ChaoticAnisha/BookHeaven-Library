@@ -77,13 +77,13 @@ export default function TermsPage() {
             <ScrollText className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-[#1E293B]">Terms & Conditions</h1>
-            <p className="text-xs text-[#94A3B8] mt-0.5">Last updated: June 2026</p>
+            <h1 className="text-3xl font-bold text-[#1E293B] dark:text-slate-100">Terms & Conditions</h1>
+            <p className="text-xs text-[#94A3B8] dark:text-slate-500 mt-0.5">Last updated: June 2026</p>
           </div>
         </div>
 
         {/* Intro Banner */}
-        <div className="bg-[#EEF2FF] border border-[#C7D2FE] rounded-xl p-5 mb-8 text-sm text-[#4338CA] leading-relaxed">
+        <div className="bg-[#EEF2FF] dark:bg-indigo-950 border border-[#C7D2FE] dark:border-indigo-800 rounded-xl p-5 mb-8 text-sm text-[#4338CA] dark:text-indigo-300 leading-relaxed">
           Please read these Terms and Conditions carefully before using the BookHeaven platform.
           These terms govern your use of our services, including physical book rentals, e-book access,
           and all other features of the platform.
@@ -92,18 +92,18 @@ export default function TermsPage() {
         {/* Sections */}
         <div className="space-y-6">
           {sections.map((section) => (
-            <div key={section.title} className="bg-white border border-[#E2E8F0] rounded-xl p-6 hover:shadow-sm transition-all">
-              <h2 className="font-bold text-[#1E293B] mb-3 flex items-center gap-2">
+            <div key={section.title} className="bg-white dark:bg-slate-800 border border-[#E2E8F0] dark:border-slate-700 rounded-xl p-6 hover:shadow-sm transition-all">
+              <h2 className="font-bold text-[#1E293B] dark:text-slate-100 mb-3 flex items-center gap-2">
                 <span className="w-1.5 h-5 bg-[#4F46E5] rounded-full inline-block shrink-0" />
                 {section.title}
               </h2>
-              <p className="text-sm text-[#64748B] leading-relaxed">{section.content}</p>
+              <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">{section.content}</p>
             </div>
           ))}
         </div>
 
         {/* Footer note */}
-        <p className="text-xs text-[#94A3B8] text-center mt-10">
+        <p className="text-xs text-[#94A3B8] dark:text-slate-500 text-center mt-10">
           © 2026 BookHeaven. All rights reserved. By using our platform you acknowledge you have read and understood these terms.
         </p>
       </div>
