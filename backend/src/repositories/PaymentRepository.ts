@@ -14,6 +14,10 @@ export class PaymentRepository {
     return Payment.findOne({ khaltiPidx: pidx });
   }
 
+  async findByEsewaRefId(refId: string): Promise<IPayment | null> {
+    return Payment.findOne({ esewaRefId: refId });
+  }
+
   async create(data: Partial<IPayment>): Promise<IPayment> {
     const payment = new Payment(data);
     return payment.save();
