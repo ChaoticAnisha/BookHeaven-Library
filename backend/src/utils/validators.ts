@@ -50,6 +50,10 @@ export const returnSchema = z.object({
   rentalId: z.string().min(1, 'Rental ID is required'),
 });
 
+export const cancelSchema = z.object({
+  rentalId: z.string().min(1, 'Rental ID is required'),
+});
+
 export const paymentSchema = z.object({
   rentalId: z.string().min(1, 'Rental ID is required'),
   method: z.enum(['card', 'khalti', 'credit']),
