@@ -15,6 +15,7 @@ export interface IUser extends Document {
   phone?: string;
   bio?: string;
   avatar?: string;
+  wishlist: mongoose.Types.ObjectId[];
   isActive: boolean;
   notificationPreferences: {
     restock: boolean;
@@ -39,6 +40,7 @@ const UserSchema = new Schema<IUser>(
     phone: { type: String, trim: true },
     bio: { type: String },
     avatar: { type: String },
+    wishlist: [{ type: Schema.Types.ObjectId, ref: 'Book', default: [] }],
     isActive: { type: Boolean, default: true },
     notificationPreferences: {
       restock: { type: Boolean, default: true },
