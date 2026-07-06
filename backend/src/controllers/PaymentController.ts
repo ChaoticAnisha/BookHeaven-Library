@@ -27,6 +27,23 @@ export class PaymentController {
     } catch (error) { next(error); }
   }
 
+  async initiateEsewa(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
+      const { rentalId, amount } = req.body;
+      const result = await paymentService.initiateEsewaPayment(req.user._id.toString(), rentalId, amount);
+      res.json({ success: true, data: result });
+    } catch (error) { next(error); }
+  }
+
+  async verifyEsewa(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { data } = req.body;
+      const payment = await paymentService.verifyEsewaPayment(data);
+      res.json({ success: true, message: 'eSewa payment verified', data: payment });
+    } catch (error) { next(error); }
+  }
+
   async initiateCard(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
@@ -39,8 +56,8 @@ export class PaymentController {
   async initiateCredit(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       if (!req.user) { res.status(401).json({ success: false, message: 'Not authenticated' }); return; }
-      const { rentalId } = req.body;
-      const payment = await paymentService.initiateCreditPayment(req.user._id.toString(), rentalId);
+      const { rentalId, amount } = req.body;
+      const payment = await paymentService.initiateCreditPayment(req.user._id.toString(), rentalId, amount);
       res.json({ success: true, message: 'Payment deferred to credit', data: payment });
     } catch (error) { next(error); }
   }
