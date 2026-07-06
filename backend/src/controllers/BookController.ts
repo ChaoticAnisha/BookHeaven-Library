@@ -53,6 +53,14 @@ export class BookController {
     } catch (error) { next(error); }
   }
 
+  async getSimilar(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { limit = '6' } = req.query as { limit?: string };
+      const books = await bookService.getSimilar(req.params.id, Number(limit));
+      res.json({ success: true, data: books });
+    } catch (error) { next(error); }
+  }
+
   async createBook(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const book = await bookService.createBook(req.body);
