@@ -43,6 +43,8 @@ export default function Login() {
             // Redirect to appropriate dashboard
             if (loggedUser.role === "admin") {
               router.push("/admin");
+            } else if (loggedUser.role === "librarian") {
+              router.push("/librarian");
             } else {
               router.push("/dashboard");
             }

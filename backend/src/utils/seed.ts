@@ -781,6 +781,17 @@ const seedData = async () => {
       bio: "I'm a Student",
     });
 
+    await User.create({
+      name: 'Library Staff',
+      email: 'librarian@bookhaven.com',
+      password: 'Librarian@123',
+      role: 'librarian',
+      membership: 'Basic',
+      address: 'Kathmandu',
+      phone: '+977 9800000001',
+      bio: 'BookHeaven Librarian',
+    });
+
     // Create Books — 50 titles across 8 genres
     const books = buildBooks();
     const createdBooks = await Book.insertMany(books);
